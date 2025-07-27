@@ -9,7 +9,7 @@
     "preview": "vite preview",
     "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
     "archive": "npm run build && ch5-cli archive -p ch5-svelte -d dist/ -o ./",
-    "deploy": "ch5-cli deploy -t touchscreen -H 192.168.9.177 ./ch5-svelte.ch5z -vvv" ,
+    "deploy": "ch5-cli deploy -t touchscreen -H 192.168.9.177 ./ch5-svelte.ch5z -vvv",
     "oneclick": "npm run archive && npm run deploy"
   },
   "devDependencies": {
