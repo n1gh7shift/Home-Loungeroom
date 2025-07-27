@@ -1,0 +1,29 @@
+{
+  "name": "home-loungeroom-ui",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "svelte-check --tsconfig ./tsconfig.app.json && tsc -p tsconfig.node.json",
+    "archive": "npm run build && ch5-cli archive -p ch5-svelte -d dist/ -o ./",
+    "deploy": "ch5-cli deploy -t touchscreen -H 192.168.9.177 ./ch5-svelte.ch5z -vvv" ,
+    "oneclick": "npm run archive && npm run deploy"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^6.0.0",
+    "@tsconfig/svelte": "^5.0.4",
+    "svelte": "^5.35.5",
+    "svelte-check": "^4.2.2",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.4"
+  },
+  "dependencies": {
+    "@crestron/ch5-crcomlib": "^2.15.0",
+    "ch5-svelte": "^1.0.3",
+    "vite-plugin-singlefile": "^2.3.0",
+    "vite-plugin-static-copy": "^3.1.1"
+  }
+}
