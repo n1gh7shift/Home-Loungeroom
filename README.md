@@ -59,7 +59,7 @@ The shutdown feature waits until both the PlayStation™ and TV have reported "O
 
 1.  **Navigate to UI Directory:** Open your terminal or command prompt and navigate to the `ch5_ui/` directory:
     ```bash
-    cd .\ui\
+    cd .\ui\home-loungeroom-ui
     ```
 2.  **Install Dependencies:** Install the required Node.js packages:
     ```bash
