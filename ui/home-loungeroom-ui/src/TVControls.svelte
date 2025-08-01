@@ -1,8 +1,10 @@
 <script lang="ts">
     import { useDigital } from "ch5-svelte";
+
     import ArrowSet from "./Components/ArrowSet.svelte";
     import NumpadSet from "./Components/NumpadSet.svelte";
     import ControlsSet from "./Components/ControlsSet.svelte";
+    import VolumeControls from "./Components/VolumeControls.svelte";
 
     const arrowUp = useDigital("", "50");
     const arrowDown = useDigital("", "51");
@@ -14,11 +16,7 @@
     const menu = useDigital("", "57");
     const back = useDigital("", "55");
     const home = useDigital("", "56");
-    // const reverseScan = useDigital("", "34");
-    // const play = useDigital("", "31");
-    // const pause = useDigital("", "32");
-    // const stop = useDigital("", "33");
-    // const forwardScan = useDigital("", "35");
+
     const button0 = useDigital("", "58");
     const button1 = useDigital("", "59");
     const button2 = useDigital("", "60");
@@ -29,6 +27,9 @@
     const button7 = useDigital("", "65");
     const button8 = useDigital("", "66");
     const button9 = useDigital("", "67");
+    
+    const vol_up = useDigital("", "68");
+    const vol_down = useDigital("", "69");
 
     function handleUp() {
         arrowUp.pulse();
@@ -129,11 +130,12 @@
         nine={handleNine}
     />
     <ControlsSet
-        exit={handleExit}
-        menu={handleMenu}
-        back={handleBack}
-        home={handleHome}
+    exit={handleExit}
+    menu={handleMenu}
+    back={handleBack}
+    home={handleHome}
     />
+    <VolumeControls vol_up={vol_up} vol_down={vol_down} />
 </div>
 
 <style>
@@ -143,7 +145,7 @@
         align-items: center;
         flex-flow: row wrap;
         gap: 50px;
-        max-width: 600px;
+        max-width: 800px;
     }
     .title {
         min-height: 50px;

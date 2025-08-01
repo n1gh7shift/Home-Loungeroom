@@ -81,24 +81,9 @@
         font-family: "Material Icons";
         align-items: center;
         background: #f5f5fa;
-        border: 0;
         border-radius: 8px;
-        box-sizing: border-box;
         color: #2a1f62;
-        cursor: pointer;
-        display: flex;
-        justify-content: center;
-        line-height: 1.5rem;
-        position: relative;
-        text-align: left;
-        transition: 0.2s;
-        user-select: none;
-        -webkit-user-select: none;
-        touch-action: manipulation;
-        white-space: pre;
-        width: max-content;
-        word-break: normal;
-        word-spacing: normal;
+        /* touch-action: manipulation; */
         min-height: 72px;
         min-width: 72px;
         font-size: large;
@@ -110,7 +95,6 @@
         grid-template-rows: repeat(4, 1fr);
         grid-column-gap: 10px;
         grid-row-gap: 10px;
-        max-width: 216px;
         
     }
     .numbers-box button {
@@ -120,6 +104,7 @@
 
     .button0 {
         grid-area: 4 / 2 / 5 / 3;
+
     }
     .button1 {
         grid-area: 1 / 1 / 2 / 2;
