@@ -1,79 +1,19 @@
 <script lang="ts">
     const { zero, one, two, three, four, five, six, seven, eight, nine } =
         $props();
-
-    // Place in script:
-    //
-    // function handleUp() {
-    //     arrowUp.pulse();
-    // }
-    // function handleDowm() {
-    //     arrowDown.pulse();
-    // }
-    // function handleLeft() {
-    //     arrowLeft.pulse();
-    // }
-    // function handleRight() {
-    //     arrowRight.pulse();
-    // }
-    // function handleCenter() {
-    //     select.pulse();
-    // }
-    // function handleZero() {
-    //     button0.pulse();
-    // }
-    // function handleOne() {
-    //     button1.pulse();
-    // }
-    // function handleTwo() {
-    //     button2.pulse();
-    // }
-    // function handleThree() {
-    //     button3.pulse();
-    // }
-    // function handleFour() {
-    //     button4.pulse();
-    // }
-    // function handleFive() {
-    //     button5.pulse();
-    // }
-    // function handleSix() {
-    //     button6.pulse();
-    // }
-    // function handleSeven() {
-    //     button7.pulse();
-    // }
-    // function handleEight() {
-    //     button8.pulse();
-    // }
-    // function handleNine() {}
-
-    // Place in body
-    //
-    // <NumpadSet zero={handleZero}
-    // one={handleOne}
-    // two={handleTwo}
-    // three={handleThree}
-    // four={handleFour}
-    // five={handleFive}
-    // six={handleSix}
-    // seven={handleSeven}
-    // eight={handleEight}
-    // nine={handleNine}
-    // />
 </script>
 
 <div class="numbers-box">
-    <button class="button number button0" onclick={() => zero()}>0</button>
-    <button class="button number button1" onclick={() => one()}>1</button>
-    <button class="button number button2" onclick={() => two()}>2</button>
-    <button class="button number button3" onclick={() => three()}>3</button>
-    <button class="button number button4" onclick={() => four()}>4</button>
-    <button class="button number button5" onclick={() => five()}>5</button>
-    <button class="button number button6" onclick={() => six()}>6</button>
-    <button class="button number button7" onclick={() => seven()}>7</button>
-    <button class="button number button8" onclick={() => eight()}>8</button>
-    <button class="button number button9" onclick={() => nine()}>9</button>
+    <button class="button number button0" onpointerdown={() => zero()}>0</button>
+    <button class="button number button1" onpointerdown={() => one()}>1</button>
+    <button class="button number button2" onpointerdown={() => two()}>2</button>
+    <button class="button number button3" onpointerdown={() => three()}>3</button>
+    <button class="button number button4" onpointerdown={() => four()}>4</button>
+    <button class="button number button5" onpointerdown={() => five()}>5</button>
+    <button class="button number button6" onpointerdown={() => six()}>6</button>
+    <button class="button number button7" onpointerdown={() => seven()}>7</button>
+    <button class="button number button8" onpointerdown={() => eight()}>8</button>
+    <button class="button number button9" onpointerdown={() => nine()}>9</button>
 </div>
 
 <style>
@@ -83,7 +23,7 @@
         background: #f5f5fa;
         border-radius: 8px;
         color: #2a1f62;
-        /* touch-action: manipulation; */
+        touch-action: manipulation;
         min-height: 72px;
         min-width: 72px;
         font-size: large;

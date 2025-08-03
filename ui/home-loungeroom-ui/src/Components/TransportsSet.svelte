@@ -1,29 +1,15 @@
 <script>
     const { rev, play, pause, stop, ff } = $props();
-
-    // rev = handleRev
-    // play = handlePlay
-    // pause = handlePause
-    // stop = handleStop
-    // ff = handleFf
-    // <TransportsSet rev={handleRev} play={handlePlay} pause={handlePause} stop={handleStop} ff={handleFf}/>
-
-    // function handleRev() {}
-    // function handlePlay() {}
-    // function handlePause() {}
-    // function handleStop() {}
-    // function handleFf() {}
-
 </script>
 
 <div class="transports-box">
-    <button class="button" onclick={() => rev()}>
+    <button class="button" onpointerdown={() => rev()}>
         fast_rewind
     </button>
-    <button class="button" onclick={() => play()}>play_arrow</button>
-    <button class="button" onclick={() => pause()}>pause</button>
-    <button class="button" onclick={() => stop()}>stop</button>
-    <button class="button" onclick={() => ff()}>
+    <button class="button" onpointerdown={() => play()}>play_arrow</button>
+    <button class="button" onpointerdown={() => pause()}>pause</button>
+    <button class="button" onpointerdown={() => stop()}>stop</button>
+    <button class="button" onpointerdown={() => ff()}>
         fast_forward
     </button>
 </div>

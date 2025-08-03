@@ -3,16 +3,16 @@
 </script>
 
 <div class="buttons-box">
-    <button class="button" onclick={() => back()}
+    <button class="button" onpointerdown={() => back()}
         >arrow_back_ios_new<span class="text">Back</span></button
     >
-    <button class="button" onclick={() => menu()}
+    <button class="button" onpointerdown={() => menu()}
         >menu<span class="text">Menu</span></button
     >
-    <button class="button" onclick={() => exit()}
+    <button class="button" onpointerdown={() => exit()}
         >exit_to_app<span class="text">Exit</span></button
     >
-    <button class="button" onclick={() => home()}
+    <button class="button" onpointerdown={() => home()}
         >home<span class="text">Home</span></button
     >
 </div>

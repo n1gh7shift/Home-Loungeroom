@@ -30,3 +30,7 @@ export function getEmulating(){
 export function setEmulating(state: boolean){
     emulating = state;
 }
+
+export function isTouchDevice(): boolean{
+    return navigator.maxTouchPoints > 0;
+}

@@ -26,7 +26,7 @@
   }
 </script>
 
-  <button class="powerbutton" onclick={() => handlePowerButton()}>
+  <button class="powerbutton" onpointerdown={() => handlePowerButton()}>
     <!-- <img src={power} alt="power icon" /></button> -->
 
     power_settings_new

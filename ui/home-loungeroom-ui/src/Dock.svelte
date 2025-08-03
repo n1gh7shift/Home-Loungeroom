@@ -9,7 +9,7 @@
 </script>
 
 <div class="container">
-  <button onclick={() => handleSelectionPressed(1)}>
+  <button onpointerdown={() => handleSelectionPressed(1)}>
     <img
       src={psLogo}
       class="logo logo-ps"
@@ -17,7 +17,7 @@
       style:transform={getSelection() === 1 ? "scale(2)" : "scale(1)"}
     />
   </button>
-  <button onclick={() => handleSelectionPressed(2)}>
+  <button onpointerdown={() => handleSelectionPressed(2)}>
     <img
       src={tvIcon}
       class="logo"

@@ -1,14 +1,12 @@
-<script>
-    const { vol_up, vol_down } = $props();
-
+<script lang="ts">
+    const { vol_up_start, vol_up_end, vol_down_start, vol_down_end } = $props();
 </script>
 
 
 <div class="volume-box">
-    <button class="button" onclick={() => vol_down()}>volume_down</button>
-    <button class="button" onclick={() => vol_up()}>volume_up</button>
+    <button class="button" onpointerdown={() => vol_down_start()} onpointerup={() => vol_down_end()} onpointerleave={() => vol_down_end()}>volume_down</button>
+    <button class="button" onpointerdown={() => vol_up_start()} onpointerup={() => vol_up_end()} onpointerleave={() => vol_up_end()}>volume_up</button>
 </div>
-
 
 <style>
     .volume-box {
@@ -17,7 +15,7 @@
         gap: 10px;
     }
 
-        .button {
+    .button {
         font-family: "Material Icons";
         align-items: center;
         background: #f5f5fa;

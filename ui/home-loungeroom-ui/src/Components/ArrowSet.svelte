@@ -1,47 +1,23 @@
 <script>
-    const { up, down, left, right, center } = $props();
-
-
-    // Paste functions into parent and setup like this
-    // In body:
-    // <ArrowSet up={handleUp} down={handleDowm} left={handleLeft} right={handleRight} center={handleCenter} />
-    //  
-    // In script:
-    //
-    // function handleUp(){
-    //     console.log("handleUp Run")
-    // }
-    // function handleDowm(){
-    //     console.log("handleDowm Run")
-    // }
-    // function handleLeft(){
-    //     console.log("handleLeft Run")
-    // }
-    // function handleRight(){
-    //     console.log("handleRight Run")
-    // }
-    // function handleCenter(){
-    //     console.log("handleCenter Run")
-    // }
+    const { up, down, left, right, center_down, center_up } = $props();
 
 </script>
 
 <div class="arrow-box">
-    <button class="button arrow-button arrowUp" onclick={() => up()}
+    <button class="button arrow-button arrowUp" onpointerdown={() => up()}
         >arrow_upward</button
     >
-    <button class="button arrow-button arrowLeft" onclick={() => down()}
+    <button class="button arrow-button arrowLeft" onpointerdown={() => left()}
         >arrow_back</button
     >
-    <button class="button arrow-button arrowDown" onclick={() => left()}
+    <button class="button arrow-button arrowDown" onpointerdown={() => down()}
         >arrow_downward</button
     >
-    <button class="button arrow-button arrowRight" onclick={() => right()}
+    <button class="button arrow-button arrowRight" onpointerdown={() => right()}
         >arrow_forward</button
     >
 
-    <button class="button arrow-button center" onclick={() => center()}
-        >crop_square</button
+    <button class="button arrow-button center" onpointerdown={() => center_down()} onpointerup={() => center_up()} onpointerleave={() => center_up()}>crop_square</button
     >
 </div>
 
@@ -52,8 +28,7 @@
         background: #f5f5fa;
         border: 0;
         border-radius: 8px;
-        /* touch-action: manipulation; */
-
+        touch-action: manipulation;
         color: #2a1f62;
         line-height: 1.5rem;
         text-align: center;

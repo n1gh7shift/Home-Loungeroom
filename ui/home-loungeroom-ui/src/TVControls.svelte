@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { useDigital } from "ch5-svelte";
+    import { useDigital, type DigitalSignal } from "ch5-svelte";
 
     import ArrowSet from "./Components/ArrowSet.svelte";
     import NumpadSet from "./Components/NumpadSet.svelte";
@@ -31,111 +31,52 @@
     const vol_up = useDigital("", "68");
     const vol_down = useDigital("", "69");
 
-    function handleUp() {
-        arrowUp.pulse();
-    }
-    function handleDowm() {
-        arrowDown.pulse();
-    }
-    function handleLeft() {
-        arrowLeft.pulse();
-    }
-    function handleRight() {
-        arrowRight.pulse();
-    }
-    function handleCenter() {
-        select.pulse();
+    function handleButtonPulse(button: DigitalSignal){
+        button.pulse();
     }
 
-    function handleZero() {
-        button0.pulse();
+    function handleButtonDown(button: DigitalSignal){
+        button.value = true;
     }
-    function handleOne() {
-        button1.pulse();
-    }
-    function handleTwo() {
-        button2.pulse();
-    }
-    function handleThree() {
-        button3.pulse();
-    }
-    function handleFour() {
-        button4.pulse();
-    }
-    function handleFive() {
-        button5.pulse();
-    }
-    function handleSix() {
-        button6.pulse();
-    }
-    function handleSeven() {
-        button7.pulse();
-    }
-    function handleEight() {
-        button8.pulse();
-    }
-    function handleNine() {
-        button9.pulse();
-    }
-
-    // function handleRev() {
-    //     reverseScan.pulse();
-    // }
-    // function handlePlay() {
-    //     play.pulse();
-    // }
-    // function handlePause() {
-    //     pause.pulse();
-    // }
-    // function handleStop() {
-    //     stop.pulse();
-    // }
-    // function handleFf() {
-    //     forwardScan.pulse();
-    // }
-
-    function handleExit() {
-        exit.pulse();
-    }
-    function handleMenu() {
-        menu.pulse();
-    }
-    function handleBack() {
-        back.pulse();
-    }
-    function handleHome() {
-        home.pulse();
+    function handleButtonUp(button: DigitalSignal){
+        button.value = false;
     }
 </script>
 
 <div class="title">TV Controls</div>
 <div class="container">
     <ArrowSet
-        up={handleUp}
-        down={handleDowm}
-        left={handleLeft}
-        right={handleRight}
-        center={handleCenter}
+        up={() => handleButtonPulse(arrowUp)}
+        down={() => handleButtonPulse(arrowDown)}
+        left={() => handleButtonPulse(arrowLeft)}
+        right={() => handleButtonPulse(arrowRight)}
+        center_down={() => handleButtonDown(select)}
+        center_up={() => handleButtonUp(select)}
     />
     <NumpadSet
-        zero={handleZero}
-        one={handleOne}
-        two={handleTwo}
-        three={handleThree}
-        four={handleFour}
-        five={handleFive}
-        six={handleSix}
-        seven={handleSeven}
-        eight={handleEight}
-        nine={handleNine}
+        zero={() => handleButtonPulse(button0)}
+        one={() => handleButtonPulse(button1)}
+        two={() => handleButtonPulse(button2)}
+        three={() => handleButtonPulse(button3)}
+        four={() => handleButtonPulse(button4)}
+        five={() => handleButtonPulse(button5)}
+        six={() => handleButtonPulse(button6)}
+        seven={() => handleButtonPulse(button7)}
+        eight={() => handleButtonPulse(button8)}
+        nine={() => handleButtonPulse(button9)}
     />
     <ControlsSet
-    exit={handleExit}
-    menu={handleMenu}
-    back={handleBack}
-    home={handleHome}
+        exit={() => handleButtonPulse(exit)}
+        menu={() => handleButtonPulse(menu)}
+        back={() => handleButtonPulse(back)}
+        home={() => handleButtonPulse(home)}
     />
-    <VolumeControls vol_up={vol_up} vol_down={vol_down} />
+    <VolumeControls 
+        vol_up_start={() => handleButtonDown(vol_up)} 
+        vol_up_end={() => handleButtonUp(vol_up)} 
+        vol_down_start={() => handleButtonDown(vol_down)}  
+        vol_down_end={() => handleButtonUp(vol_down)}
+        />
 </div>
 
 <style>
