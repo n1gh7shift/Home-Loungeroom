@@ -6,7 +6,7 @@
 // #ENABLE_DYNAMIC
 #SYMBOL_NAME ""
 #HINT ""
- // #CATEGORY "" 
+// #CATEGORY "" 
 // #PRINT_TO_TRACE
 // #DIGITAL_EXPAND 
 // #ANALOG_SERIAL_EXPAND 
@@ -28,78 +28,63 @@
 #HELP_END
 */
  
-DIGITAL_INPUT UI_Power_On, UI_Power_Off,_SKIP_,TV_Power_On,TV_Power_Off,_SKIP_,CEC_Power_On,CEC_Power_Off;
-// ANALOG_INPUT delayTime;
+DIGITAL_INPUT UI_Power_On, UI_Power_Off,_SKIP_,TV_Power_Fb,_SKIP_,CEC_Power_Fb;
+// ANALOG_INPUT 
 // STRING_INPUT 
 // BUFFER_INPUT 
 
-
-
 DIGITAL_OUTPUT System_On, System_Off;
 
-
-
-INTEGER systemState, hold;
+INTEGER systemState, hold, peripheral_on;
 // System State - 0 off. 1 on, 2 - turning on, 3 - turning off.
+// peripheral_on - one off shot for connected cec device to turn system on only.
 
-Function CheckAndChange(integer state)
+Function CheckAndChange(integer setState)
 {
 	integer i;
-
 	i = 0;
-
-
-    if(hold = 1) return;
-
-	if (systemState != state)
-	{
-    	hold = 1;
-		
+  if(hold = 1) return;
+	if (systemState != setState){
+  	hold = 1;
 		// systemState = state;
-		if(state = 1) // Set to turning on
-		{			
-        	System_On = 1;
+		if(setState = 1){ // Set to turning on
+      System_On = 1;
 			System_Off = 0;
 			systemState = 2;
-			while(i < loop_max)
-			{
+			while(i < loop_max){
 				i = i + 1;
-				if (CEC_Power_On = 1 & TV_Power_On) break;
+				if (TV_Power_Fb) break;
 				DELAY(loopTime);
 			}
-			if (i != loop_max)
-			{
+			if (i != loop_max){
 				systemState = 1; // System On Success
 			}
-			else
-			{
+			else{
 				systemState = 0; // Determines system on as a failure and reverted.
+				peripheral_on = 0;
 			}      
-        }
-		else		// Set to turning off
-		{
-        	System_On = 0;
+    }
+		else{		// Set to turning off
+      System_On = 0;
 			System_Off = 1;
 			systemState = 3;
-			while(i < loop_max)
-			{
+			while(i < loop_max){
 				i = i + 1;
-				if (CEC_Power_Off = 1 & TV_Power_Off) break;
+				if (!TV_Power_Fb) break;
 				DELAY(loopTime);
 			}
-			if (i != loop_max)
-			{
+			if (i != loop_max){
 				systemState = 0; // System Off Success
+				peripheral_on = 0;
 			}
-			else
-			{
+			else{
 				systemState = 1; // Determines system on as a failure and reverted.
 			} 		
 		}
-		
 		hold = 0; 
 	}
 }
+
 
 CHANGE UI_Power_On
 
@@ -113,30 +98,25 @@ CHANGE UI_Power_Off
     CheckAndChange(0);
 }
 
-CHANGE TV_Power_On
+CHANGE TV_Power_Fb
 
 {
-    CheckAndChange(1);
+	if (TV_Power_Fb){
+    	CheckAndChange(1);
+	}
+	else
+	{
+    	CheckAndChange(0);
+	}	
 }
 
-CHANGE TV_Power_Off
-
+PUSH CEC_Power_Fb
 {
-    CheckAndChange(0);
+    if (!peripheral_on){
+    	CheckAndChange(1);
+		peripheral_on = 1;
+	}
 }
-
-CHANGE CEC_Power_On
-
-{
-    CheckAndChange(1);
-}
-    
-CHANGE CEC_Power_Off
-
-{
-    CheckAndChange(0);
-}
-
 
 Function Main()
 {
@@ -144,7 +124,6 @@ Function Main()
 	hold = 0;
 	System_Off = 1;
 	System_On = 0;
-
 }
 
 
